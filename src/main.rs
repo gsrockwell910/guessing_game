@@ -1,3 +1,4 @@
+use std::cmp::Ordering; // To compare guess to secret number
 use std::io; // io library to get user input
 
 use rand::Rng; // Rand library to generate random numbers
@@ -23,6 +24,16 @@ fn main() {
         .read_line(&mut guess)
         .expect("Failed to read line");
 
+    // Convert String guess to an integer for comparison
+    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+
     // Prints String containing user input
     println!("You guessed: {guess}");
+
+    // Match statement to compare guess to secret number
+    match guess.cmp(&secret_number) {
+        Ordering::Less => println!("Too small!"),
+        Ordering::Greater => println!("Too big!"),
+        Ordering::Equal => println!("You win!"),
+    }
 }
