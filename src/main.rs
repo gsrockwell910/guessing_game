@@ -13,27 +13,30 @@ fn main() {
 
     println!("The secret number is: {secret_number}");
 
-    println!("Please input your guess.");
 
-    // Mutable variable to store user input
-    let mut guess = String::new();
+    loop {
+        println!("Please input your guess.");
 
-    // Handle user input
-    // & indicates a reference
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to read line");
+        // Mutable variable to store user input
+        let mut guess = String::new();
 
-    // Convert String guess to an integer for comparison
-    let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        // Handle user input
+        // & indicates a reference
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to read line");
 
-    // Prints String containing user input
-    println!("You guessed: {guess}");
+        // Convert String guess to an integer for comparison
+        let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
-    // Match statement to compare guess to secret number
-    match guess.cmp(&secret_number) {
-        Ordering::Less => println!("Too small!"),
-        Ordering::Greater => println!("Too big!"),
-        Ordering::Equal => println!("You win!"),
+        // Prints String containing user input
+        println!("You guessed: {guess}");
+
+        // Match statement to compare guess to secret number
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => println!("You win!"),
+        }
     }
 }
