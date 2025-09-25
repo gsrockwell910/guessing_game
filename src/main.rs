@@ -27,7 +27,10 @@ fn main() {
             .expect("Failed to read line");
 
         // Convert String guess to an integer for comparison
-        let guess: u32 = guess.trim().parse().expect("Please type a number!");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         // Prints String containing user input
         println!("You guessed: {guess}");
